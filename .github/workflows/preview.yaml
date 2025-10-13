@@ -22,12 +22,12 @@ jobs:
 
       - name: DNScontrol check
         run: |
-          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol check
+          docker run --rm -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol check
 
       - name: DNScontrol preview
         run: |
           echo "## DNScontrol Preview\n\nThe following is a preview of the effects of this PR.\n\n\`\`\`" > preview.txt
-          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol preview \
+          docker run --rm -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol preview \
             | ./filter-preview.sh \
             | tee >(sed $'s/\033[[][^A-Za-z]*[A-Za-z]//g' >> preview.txt)
           echo '```' >> preview.txt

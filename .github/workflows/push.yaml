@@ -25,11 +25,11 @@ jobs:
 
       - name: DNScontrol check
         run: |
-          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol check
+          docker run --rm -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol check
 
       - name: DNScontrol push
         run: |
-          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol push
+          docker run --rm -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol push
 
       - name: Delete creds.json
         run: 'shred -u creds.json'
