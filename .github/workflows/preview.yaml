@@ -1,0 +1,43 @@
+name: Check and Preview
+
+on: pull_request
+
+jobs:
+  check_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Create creds.json
+        run: |
+          cat >creds.json <<EOF
+          {
+            "cloudflare": {
+              "TYPE": "CLOUDFLAREAPI",
+              "accountid": "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}",
+              "apitoken": "${{ secrets.CLOUDFLARE_API_TOKEN }}"
+            }
+          }
+          EOF
+
+      - name: DNScontrol check
+        run: |
+          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol check
+
+      - name: DNScontrol preview
+        run: |
+          echo "## DNScontrol Preview\n\nThe following is a preview of the effects of this PR.\n\n\`\`\`" > preview.txt
+          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol preview \
+            | ./filter-preview.sh \
+            | tee >(sed $'s/\033[[][^A-Za-z]*[A-Za-z]//g' >> preview.txt)
+          echo '```' >> preview.txt
+
+
+      - name: Delete creds.json
+        run: 'shred -u creds.json'
+
+      - name: Create PR comment with preview
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.pull_request.id }}
+          body-path: 'preview.txt'
