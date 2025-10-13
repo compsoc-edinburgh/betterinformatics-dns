@@ -39,5 +39,5 @@ jobs:
       - name: Create PR comment with preview
         uses: peter-evans/create-or-update-comment@v5
         with:
-          issue-number: ${{ github.event.pull_request.id }}
+          issue-number: ${{ github.event.number }}
           body-path: 'preview.txt'
