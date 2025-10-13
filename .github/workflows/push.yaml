@@ -1,0 +1,35 @@
+name: Push Changes to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Create creds.json
+        run: |
+          cat >creds.json <<EOF
+          {
+            "cloudflare": {
+              "TYPE": "CLOUDFLAREAPI",
+              "accountid": "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}",
+              "apitoken": "${{ secrets.CLOUDFLARE_API_TOKEN }}"
+            }
+          }
+          EOF
+
+      - name: DNScontrol check
+        run: |
+          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol check
+
+      - name: DNScontrol push
+        run: |
+          docker run --rm -it -v "$(pwd):/dns" ghcr.io/stackexchange/dnscontrol push
+
+      - name: Delete creds.json
+        run: 'shred -u creds.json'
