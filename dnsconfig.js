@@ -43,19 +43,10 @@ D("betterinformatics.com", REG_NONE,
     MX("@", 10, "aspmx2.googlemail.com."),
     MX("@", 10, "aspmx3.googlemail.com."),
 
-    // Mailgun
-    CNAME("email.mail", "mailgun.org."),
-    MX("mail", 10, "mxa.mailgun.org."),
-    MX("mail", 10, "mxb.mailgun.org."),
-
     // Site ownership verification
     // Google:
     TXT("@", "google-site-verification=icngKtS5RWHJ4PzhEMS3d5ZRXK_3Qj1_jRAqCHcZNAw"),
     TXT("@", "google-site-verification=KkNJEvdhFAGRgjUjXP8JL9Kgc6g2IQ9yK-XKopEWLPc"),
     // GitHub
     TXT("_github-challenge-compsoc-edinburgh", "9129fe68d6"),
-    // Mailgun SPF?
-    TXT("mail", "v=spf1 include:mailgun.org ~all"),
-    // Mailgun DKIM?
-    TXT("mailo._domainkey.mail", "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlK5k+ZU7eYoJfwHhYCv7MusRTxJdyF2oGGOyMp5ExZDpZub9dekTKHcEmgXmC7KKngRCzEGWpBzt5dfnG7nJtY3jkmj2tfQOV+wgJ4bmE3cpIYOYabXcbQRUc8gAoJV51gte2Wxl2Yhixafy+drXi5pP1S/dJlkNFpOmIud9newIDAQAB"),
 );
