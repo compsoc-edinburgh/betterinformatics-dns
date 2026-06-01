@@ -28,6 +28,9 @@ D("betterinformatics.com", REG_NONE,
     // Analytics hosted on Tardis
     A("analytics", tardis, CF_PROXY_ON),
 
+    // Monitoring hosted on Tardis
+    A("mon", tardis, CF_PROXY_ON),
+
     // Welcome page by Angus Pearson
     // https://github.com/compsoc-edinburgh/bi-welcome
     CNAME("welcome", "betterinformatics.github.io."),
