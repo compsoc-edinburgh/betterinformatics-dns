@@ -1,5 +1,7 @@
 // We manage our DNS on Cloudflare
-var DSP_CLOUDFLARE = NewDnsProvider("cloudflare", "-");
+var DSP_CLOUDFLARE = NewDnsProvider("cloudflare", {
+    "manage_single_redirects": true
+});
 
 // DNScontrol should not talk to the registrar - it is set up manually
 var REG_NONE = NewRegistrar("none");
