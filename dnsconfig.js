@@ -24,7 +24,7 @@ D("betterinformatics.com", REG_NONE,
         "redirect venn diagram linked extensively from many places",
         302,
         'http.request.full_uri contains "betterinformatics.com/resources/inf1-cl/venn"',
-        'https://betterinformatics.com/guide/venn'
+        '"https://betterinformatics.com/guide/venn"'
     ),
 
     // File collection
