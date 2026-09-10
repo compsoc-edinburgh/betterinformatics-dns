@@ -13,14 +13,21 @@ D("betterinformatics.com", REG_NONE,
     // Static knowledgebase
     // https://github.com/compsoc-edinburgh/betterinformatics
     // See: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
-    A("@", "185.199.108.153", CF_PROXY_ON),
-    A("@", "185.199.109.153", CF_PROXY_ON),
-    A("@", "185.199.110.153", CF_PROXY_ON),
-    A("@", "185.199.111.153", CF_PROXY_ON),
+    A("archive", "185.199.108.153", CF_PROXY_ON),
+    A("archive", "185.199.109.153", CF_PROXY_ON),
+    A("archive", "185.199.110.153", CF_PROXY_ON),
+    A("archive", "185.199.111.153", CF_PROXY_ON),
+
+    CF_SINGLE_REDIRECT(
+        "redirect venn diagram linked extensively from many places",
+        302,
+        'http.request.full_uri contains "betterinformatics.com/resources/inf1-cl/venn"',
+        'https://betterinformatics.com/guide/venn'
+    ),
 
     // File collection
     // https://github.com/compsoc-edinburgh/betterinformatics-files
-    A("files", tardis, CF_PROXY_ON),
+    A("@", tardis, CF_PROXY_ON),
 
     // Attempting preview deployments for file colection
     A("*.preview.files", tardis, CF_PROXY_ON),
