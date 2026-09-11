@@ -27,6 +27,13 @@ D("betterinformatics.com", REG_NONE,
         'concat("https://betterinformatics.com/guide/venn", "")'
     ),
 
+    CF_SINGLE_REDIRECT(
+        "redirect files.betterinf to betterinf",
+        302,
+        'http.host eq "files.betterinformatics.com"',
+        'concat("https://betterinformatics.com", http.request.uri)'
+    ),
+
     // File collection
     // https://github.com/compsoc-edinburgh/betterinformatics-files
     A("@", tardis, CF_PROXY_ON),
