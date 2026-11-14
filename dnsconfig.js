@@ -22,9 +22,44 @@ D("betterinformatics.com", REG_NONE,
 
     CF_SINGLE_REDIRECT(
         "redirect venn diagram linked extensively from many places",
-        302,
-        'http.request.full_uri contains "betterinformatics.com/resources/inf1-cl/venn"',
+        301,
+        'http.request.full_uri contains "//betterinformatics.com/resources/inf1-cl/venn"',
         'concat("https://betterinformatics.com/guide/venn", "")'
+    ),
+
+    CF_SINGLE_REDIRECT(
+        "redirect inf1",
+        301,
+        'http.request.full_uri contains "//betterinformatics.com/inf1"',
+        'concat("https://betterinformatics.com/guide/year1", "")'
+    ),
+
+    CF_SINGLE_REDIRECT(
+        "redirect inf2",
+        301,
+        'http.request.full_uri contains "//betterinformatics.com/inf2"',
+        'concat("https://betterinformatics.com/guide/year2", "")'
+    ),
+
+    CF_SINGLE_REDIRECT(
+        "redirect inf3",
+        301,
+        'http.request.full_uri contains "//betterinformatics.com/inf3"',
+        'concat("https://betterinformatics.com/guide/year3", "")'
+    ),
+
+    CF_SINGLE_REDIRECT(
+        "redirect inf4",
+        301,
+        'http.request.full_uri contains "//betterinformatics.com/inf4"',
+        'concat("https://betterinformatics.com/guide/year3", "")'
+    ),
+
+    CF_SINGLE_REDIRECT(
+        "redirect inf5",
+        301,
+        'http.request.full_uri contains "//betterinformatics.com/inf5"',
+        'concat("https://betterinformatics.com/guide/masters", "")'
     ),
 
     // File collection
@@ -33,7 +68,7 @@ D("betterinformatics.com", REG_NONE,
 
     CF_SINGLE_REDIRECT(
         "redirect files.betterinf to betterinf",
-        302,
+        301,
         'http.host eq "files.betterinformatics.com"',
         'concat("https://betterinformatics.com", http.request.uri)'
     ),
